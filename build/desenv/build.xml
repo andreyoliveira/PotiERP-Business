@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="PotiERP-DEPLOY" default="deploy" basedir="./">
+
+	<!-- Variaveis de ambiente. -->
+	<property environment="env" />
+	<property file="potiErp.properties" />
+	
+	<!-- Faz o deploy da aplicação -->
+	<target name="deploy" depends="init, undeploy, poti.business, poti.web">
+		<ear destfile="${dist}/${poti.ear}" appxml="${dir.root.business}/${src}/META-INF/application.xml">
+			
+			<fileset dir="${dist}" includes="${poti.business.jar}"/>
+			<fileset dir="${dist}" includes="${poti.web.war}"/>
+		</ear>
+		<copy file="${dist}/${poti.ear}" todir="${deploy}" />
+	</target>
+	
+	<target name="init" description="Cria diretorios de distribuição e compilados">		
+		<delete dir="${dist}" />
+		<mkdir dir="${dist}" />
+		<path id="compilation.path">
+			<fileset dir="${dir.root.web}/WebContent/WEB-INF/lib" includes="**/*.jar"/>
+			<fileset dir="${libs}" includes="**/*.jar"/>
+			<fileset dir="${poti.business}" includes="**/*.jar"/>
+			<fileset dir="${dist}" includes="**/*.jar"/>
+		</path>
+	</target>
+	
+	<target name="undeploy">
+		<delete file="${deploy}/${poti.ear}" />
+	</target>
+
+	<!-- Geração do jar do poti.business -->
+	<target name="poti.business" description="gera o jar da camada de negocio do poti" depends="init">
+		<jar destfile="${dist}/${poti.business.jar}">
+			<zipfileset dir="${dir.root.business}/${src}/META-INF" prefix="META-INF">
+				<include name="ejb-jar.xml"/>
+				<include name="jboss.xml"/>
+				<include name="persistence.xml"/>
+				<exclude name="**/*.svn" />
+			</zipfileset>
+			<zipfileset dir="${dir.root.business}/${bin}" includes="**/*.class"/>
+		</jar>
+	</target>
+	
+	<!-- Geração do war -->
+	<target name="poti.web"  description="poti.web.war" depends="init">
+		<jar destfile="${dist}/${poti.web.war}">
+			<zipfileset dir="${JavaSource}" prefix="WEB-INF/classes" includes="**/*.conf, **/*.properties, **/*.xml"/>
+			<zipfileset dir="${JavaBin}" prefix="WEB-INF/classes" includes="**/*.class*"/>
+			<zipfileset dir="${dir.root.web}/WebContent" includes="**/*.*" excludes="**/WEB-INF/**" />
+			<zipfileset dir="${dir.root.web}/WebContent/WEB-INF" prefix="WEB-INF" includes="**/*.xml, **/*.xhtml" />
+			<zipfileset dir="${dir.root.web}/WebContent/WEB-INF/lib" prefix="WEB-INF/lib" includes="**/*.*" />
+		</jar>
+	</target>
+</project>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProtocoloEntregaAtestadoMedico" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="pessoa" class="br.com.potierp.model.Pessoa">
+		<fieldDescription><![CDATA[pessoa]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="736" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="227" y="11" width="104" height="49"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/imagens/logotipo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="215" y="93" width="128" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[COMUNICADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="367" y="93" width="187" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[1a via da empresa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="129" width="554" height="111"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[   Informamos que, a partir de Outubro de 2010, os atestados médicos deverão ser entregues pessoalmente no RH da Master Clear pelo funcionário, ou encaminhados por email para rh@masterclear.com.br, dentro do prazo de 24 horas.
+   A não entrega ou o não envio dentro do prazo de 24 horas acarretará em: desconto do dia ou das horas, perda do DSR/Feriado, desconto da cesta básica, desconto do VT e VR do dia.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="251" width="555" height="42"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement markup="none">
+					<font size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[Obs.: Não é mais permitido a retirada dos atestados pela Supervisora.
+            Não é permitido enviar o atestado pelo e-mail do cliente.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="304" width="158" height="47"/>
+				<textElement markup="none">
+					<font size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[Sem mais
+Recursos Humanos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="315" width="382" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[__________________________________________]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="169" y="333" width="382" height="19"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pessoa}.getNome().toUpperCase()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="371" width="554" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="496" width="554" height="111"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[   Informamos que, a partir de Outubro de 2010, os atestados médicos deverão ser entregues pessoalmente no RH da Master Clear pelo funcionário, ou encaminhados por email para rh@masterclear.com.br, dentro do prazo de 24 horas.
+   A não entrega ou o não envio dentro do prazo de 24 horas acarretará em: desconto do dia ou das horas, perda do DSR/Feriado, desconto da cesta básica, desconto do VT e VR do dia.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="460" width="187" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[2a via do funcionário]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="700" width="382" height="19"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pessoa}.getNome().toUpperCase()]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement x="226" y="378" width="104" height="49"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/imagens/logotipo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="168" y="682" width="382" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[__________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="671" width="158" height="47"/>
+				<textElement markup="none">
+					<font size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[Sem mais
+Recursos Humanos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="214" y="460" width="128" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[COMUNICADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="618" width="555" height="42"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement markup="none">
+					<font size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[Obs.: Não é mais permitido a retirada dos atestados pela Supervisora.
+            Não é permitido enviar o atestado pelo e-mail do cliente.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="66" width="294" height="21"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Santo André,___ de ________________ de ______.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="259" y="433" width="294" height="21"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Santo André,___ de ________________ de ______.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contratroExperiencia" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="53"/>
+	<subDataset name="dataset1"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<parameter name="dataContrato" class="java.util.Date"/>
+	<parameter name="nomeComTitulo" class="java.lang.String"/>
+	<parameter name="dataFinalContrato" class="java.util.Date"/>
+	<parameter name="salarioExtenso" class="java.lang.String"/>
+	<parameter name="locaisTrabalho" class="java.lang.String"/>
+	<parameter name="horariosTrabalho" class="java.lang.String"/>
+	<parameter name="dataContratoExtenso" class="java.lang.String"/>
+	<parameter name="dataProrrogada" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="pessoa" class="br.com.potierp.model.Pessoa">
+		<fieldDescription><![CDATA[pessoa]]></fieldDescription>
+	</field>
+	<field name="empresa" class="br.com.potierp.model.Empresa">
+		<fieldDescription><![CDATA[empresa]]></fieldDescription>
+	</field>
+	<field name="ctps" class="br.com.potierp.model.Ctps">
+		<fieldDescription><![CDATA[ctps]]></fieldDescription>
+	</field>
+	<field name="cargo" class="br.com.potierp.model.Cargo">
+		<fieldDescription><![CDATA[cargo]]></fieldDescription>
+	</field>
+	<field name="salario" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[salario]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="119" y="0" width="310" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRATO DE EXPERIÊNCIA]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="104" height="49"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/imagens/logotipo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="70" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="555" height="70" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pelo presente instrumento particular de experiência, a empresa "
++ $F{empresa}.getRazaoSocial()
++ " com sede na " + $F{empresa}.getEndereco().getEndereco()
++ ", " + $F{empresa}.getEndereco().getNumero()
++ " - Cidade: " + $F{empresa}.getEndereco().getCidade()
++ " - Estado de " + $F{empresa}.getEndereco().getEstado().getSigla()
++ ", inscrita no CNPJ do MF sob Nº "
++ ($F{empresa}.getCnpj() != null ?
+($F{empresa}.getCnpj().substring(0, 2) + "." + $F{empresa}.getCnpj().substring(2, 5) + "." + $F{empresa}.getCnpj().substring(5, 8) + "/" + $F{empresa}.getCnpj().substring(8, 12) + "-" + $F{empresa}.getCnpj().substring(12, 14))
+: $F{empresa}.getCnpj())
++ " denominada empregadora, e " + $P{nomeComTitulo}
++ " residente à " + $F{pessoa}.getEndereco().getEndereco()
++ " " + $F{pessoa}.getEndereco().getNumero()
++ $F{pessoa}.getEndereco().getComplemento()
++ " - " + $F{pessoa}.getEndereco().getBairro() + " - "
++ $F{pessoa}.getEndereco().getCidade() + " - "
++ ($F{pessoa}.getEndereco().getEstado() != null ?
+    $F{pessoa}.getEndereco().getEstado().getSigla() : "")
++ " CEP " + $F{pessoa}.getEndereco().getCep()
++ ", portadora da CTPS Nº "
++ ($F{ctps}.getCtps() + "/" + $F{ctps}.getSerie()
++ "/" + $F{ctps}.getUf())
++ ", doravante designada Empregada, celebram o presente contrato "
++ "individual de trabalho para fins de experiência, "
++ "conforme legislação trabalhista em vigor, regido pelas "
++ "cláusulas abaixo e demais disposição vigentes:"
++ "\n" +
+"1- O Empregado trabalhará para a empregadora na função de "
++ $F{cargo}.getCargo()
++ " e mais as funções que vierem ser objetivo de ordens verbais,"
++ " cartas ou avisos, segundo as necessidades da empregadora "
++ "desde que compatíveis com as suas atribuições."
++ "\n" +
+"2- O local de trabalho situa-se: "
++ $P{locaisTrabalho}
++ "; podendo a empregadora, a qualquer tempo, transferir o "
++ "empregado a título temporário ou definitivo tanto no âmbito "
++ "da unidade para a qual foi admitido, como para outras, "
++ "em qualquer localidade desde Estado ou dentro do País, em "
++ "conformidade com o parágrafo 1º do artigo 469 da consolidação "
++ "das leis de trabalho."
++ "\n" +
+"3- O horário de trabalho do empregado será o seguinte: "
++ $P{horariosTrabalho}
++ "\n" +
+"4- O empregado receberá a remuneração de R$ "
++ $F{salario}.toString().replace('.',',')
++ " por mês " + $P{salarioExtenso} + "."]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="446" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1" y="183" width="118" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<font isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{empresa}.getEndereco().getCidade() + ","]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="183" width="229" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{dataContratoExtenso}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="8" y="219" width="230" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{empresa}.getRazaoSocial()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="8" y="216" width="230" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="314" y="219" width="230" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pessoa}.getNome()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="314" y="216" width="230" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="8" y="259" width="230" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Testemunha"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="314" y="256" width="230" height="1"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="8" y="256" width="230" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="314" y="259" width="230" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Responsável quando for menor"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="290" width="555" height="17" isPrintWhenDetailOverflows="true" backcolor="#A0A0A0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRORROGAÇÃO DO CONTRATO DE EXPERIÊNCIA]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="321" width="555" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Por mútuo acordo, o presente contrato de experiência fica prorrogado até " + $P{dataProrrogada} + "."]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="345" width="118" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<font isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{empresa}.getEndereco().getCidade() + ","]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="345" width="173" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["      de                       de          ."]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="8" y="386" width="230" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{empresa}.getRazaoSocial()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="8" y="426" width="230" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Testemunha"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="314" y="423" width="230" height="1"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="314" y="383" width="230" height="1"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="8" y="383" width="230" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="314" y="386" width="230" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pessoa}.getNome()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="8" y="423" width="230" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="314" y="426" width="230" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Responsável quando for menor"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="281" height="15" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["5- O prazo deste contrato é de 45 dias, com início em "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="14" width="555" height="40" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["6- Além dos descontos previstos em Lei, reserva-se a Empregadora"
++ " o direito de descontar do Empregado as importâncias "
++ "correspondentes aos danos causados por ele, com fundamento "
++ "no parágrafo 1º do artigo 462 da Consolidação das Leis de "
++ "Trabalho."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="53" width="555" height="40" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["7- O Empregado fica ciente do Regulamento da Empresa e das "
++ "Normas de Segurança que regulam suas atividades na Empregadora"
++ "e se compromete a usar os equipamentos de segurança "
++ "fornecidos, sob a pena de ser punido por falta grave, nos "
++ "termos da Legislação vigente e demais disposições inerentes a"
++ " segurança e medicina do trabalho."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="93" width="555" height="27" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["8- Permanecendo o Empregado a serviço da Empregadora após o "
++ "término da experiência, continuarão em vigor as cláusulas "
++ "constantes deste contrato."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="120" width="555" height="40" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["9 - A rescisão do presente contrato, sem justa causa, por parte"
++ "da empregadora ou do empregado, antes do término do contrato, "
++ "implicará em indenização, e por metade, a indenização que "
++ "teria direito até o término do contrato, conforme art. 479 e "
++ "480 da CLT."]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="261" y="0" width="63" height="15"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{dataContrato}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="321" y="0" width="76" height="15" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" e termino em "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="159" width="555" height="21" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Tendo assim contratado, assinam o presente instrumento, em duas"
++ " vias, na presença da testemunha abaixo."]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="386" y="0" width="67" height="15"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{dataFinalContrato}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AutorizacaoDescontoRefeicao_old" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="10"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="pessoa" class="br.com.potierp.model.Pessoa">
+		<fieldDescription><![CDATA[pessoa]]></fieldDescription>
+	</field>
+	<field name="empresa" class="br.com.potierp.model.Empresa">
+		<fieldDescription><![CDATA[empresa]]></fieldDescription>
+	</field>
+	<title>
+		<band height="170" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="225" y="15" width="137" height="65"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/imagens/logotipo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="113" width="572" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TERMO DE AUTORIZAÇAO PARA DESCONTO DE REFEIÇÃO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="337" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="95" width="572" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["____________________,_____ de ____________________ de _________."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="572" height="68"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Justified">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Autorizo a empresa "+$F{empresa}.getRazaoSocial()+", à descontar do meu salário mensal, o valor correspondente à R\$ 0,10 ( Dez centavos ) por dia útil referente a fornecimento de refeição pelo contratante Mundial Logística, onde estou ciente que a empresa "+$F{empresa}.getRazaoSocial()+" arca com 50% do valor pago por refeição."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="115" y="227" width="318" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{pessoa}.getNome()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="115" y="224" width="318" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+</jasperReport>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReciboValeTransporte" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:/Eclipse Ganymede/workspace palestra/PotiERP-Business/src/jasper/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dataInicio" class="java.util.Date"/>
+	<parameter name="dataFim" class="java.util.Date"/>
+	<parameter name="dataRecibo" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="funcionario" class="br.com.potierp.model.Funcionario">
+		<fieldDescription><![CDATA[funcionario]]></fieldDescription>
+	</field>
+	<field name="quantidade" class="java.lang.Integer">
+		<fieldDescription><![CDATA[quantidade]]></fieldDescription>
+	</field>
+	<field name="tiposValeTransporte" class="java.util.List">
+		<fieldDescription><![CDATA[tiposValeTransporte]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valor]]></fieldDescription>
+	</field>
+	<variable name="header" class="java.lang.String">
+		<variableExpression><![CDATA["Eu " + $F{funcionario}.getPessoa().getNome() + ", declaro ter recebido da empresa "
++ $F{funcionario}.getEmpresa().getNomeFantasia() + ", os vales transportes referentes ao período de "
++ $P{dataInicio}.getDay() + "/" + $P{dataInicio}.getMonth() +
+"/" + $P{dataInicio}.getYear()
++ " à " + $P{dataFim} + "."]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="110" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="118" height="65"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/imagens/logotipo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="121" y="0" width="310" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECIBO VALE TRANSPORTE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="47" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="38" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Eu " + $F{funcionario}.getPessoa().getNome() + ", declaro ter recebido da empresa "
++ $F{funcionario}.getEmpresa().getNomeFantasia() + ", os vales transportes referentes ao período de "
++ $P{dataInicio}.toString().substring(8,10) + "/"
++ $P{dataInicio}.toString().substring(5,7) + "/"
++ $P{dataInicio}.toString().substring(0,4)
++ " à "
++ $P{dataFim}.toString().substring(8,10) + "/"
++ $P{dataFim}.toString().substring(5,7) + "/"
++ $P{dataFim}.toString().substring(0,4) + "."]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="22"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{tiposValeTransporte})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "ReciboValeTransporte_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="137" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="46"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["OBS: Estou ciente que o vale tranporte utilizado é destinado à "
++ "locomoção para o trabalho, e que faltas ocasionarão o "
++ "abatimento dos mesmos."]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="56" width="118" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<font isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{funcionario}.getEmpresa().getEndereco().getCidade() + ","]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement positionType="Float" x="64" y="56" width="101" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{dataRecibo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="103" width="309" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{funcionario}.getPessoa().getNome()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="100" width="309" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

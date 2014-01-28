@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DesvioFuncao" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<parameter name="dataExtenso" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cargo" class="br.com.potierp.model.Cargo">
+		<fieldDescription><![CDATA[cargo]]></fieldDescription>
+	</field>
+	<field name="ctps" class="br.com.potierp.model.Ctps">
+		<fieldDescription><![CDATA[ctps]]></fieldDescription>
+	</field>
+	<field name="empresa" class="br.com.potierp.model.Empresa">
+		<fieldDescription><![CDATA[empresa]]></fieldDescription>
+	</field>
+	<field name="pessoa" class="br.com.potierp.model.Pessoa">
+		<fieldDescription><![CDATA[pessoa]]></fieldDescription>
+	</field>
+	<field name="rg" class="br.com.potierp.model.Rg">
+		<fieldDescription><![CDATA[rg]]></fieldDescription>
+	</field>
+	<field name="cidade" class="java.lang.String">
+		<fieldDescription><![CDATA[empresa.endereco.cidade]]></fieldDescription>
+	</field>
+	<field name="dataAdmissao" class="java.util.Date">
+		<fieldDescription><![CDATA[dataAdmissao]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="157" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="226" y="20" width="104" height="49"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/imagens/logotipo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="27" y="102" width="502" height="27"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[TERMO DE RESPONSABILIDADE / DESVIO DE FUNÇÃO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="27" y="140" width="502" height="1"/>
+			</line>
+			<line>
+				<reportElement x="27" y="89" width="502" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="465" splitType="Stretch">
+			<textField>
+				<reportElement x="21" y="169" width="518" height="18"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Sem mais, assino o presente, na presença das testemunhas abaixo:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="21" y="10" width="518" height="141"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Eu, "+$F{pessoa}.getNome()+", portador(a) da CTPS No "+$F{ctps}.getCtps()+" SÉRIE "+$F{ctps}.getSerie()+"-"+$F{ctps}.getUf()+" portador do RG "+$F{rg}.getRg()+" funcionário(a) da empresa "+$F{empresa}.getRazaoSocial()+", CNPJ No "+$F{empresa}.getCnpj()+", declaro para os devidos fins, estar CIENTE de que, NÃO ESTOU AUTORIZADO(A), pela minha EMPREGADORA, a executar quaisquer outras funções que não seja a de "+$F{cargo}.getCargo()+", cargo para o qual fui contratado(a), ficando CIENTE ainda, de que é EXPRESSAMENTE PROIBIDA a prática de DESVIO DE FUNÇÃO, sob pena de INFRINGIR A LEI e enquadramento no ART 482 letra H DA CLT."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="22" y="288" width="175" height="18"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Assinatura do funcionário(a): "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="188" y="300" width="344" height="1"/>
+			</line>
+			<line>
+				<reportElement x="44" y="363" width="370" height="1"/>
+			</line>
+			<line>
+				<reportElement x="44" y="418" width="370" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="22" y="350" width="22" height="18"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["1)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="22" y="406" width="22" height="18"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["2)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="303" width="342" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{pessoa}.getNome()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="23" y="219" width="518" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="12" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cidade}+", "+$P{dataExtenso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReciboDevolucaoCTPS" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="pessoa" class="br.com.potierp.model.Pessoa">
+		<fieldDescription><![CDATA[pessoa]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="114" splitType="Stretch">
+			<staticText>
+				<reportElement x="26" y="76" width="502" height="27"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="16" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[RECIBO DE DEVOLUÇÃO DA CTPS]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="226" y="10" width="104" height="49"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "/imagens/logotipo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="404" splitType="Stretch">
+			<textField>
+				<reportElement x="26" y="49" width="502" height="131"/>
+				<textElement textAlignment="Justified">
+					<font size="16"/>
+					<paragraph lineSpacing="Double"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Eu, " + $F{pessoa}.getNome().toUpperCase() + ", declaro que recebi em devolução a carteira de trabalho, no dia ___/___/______, com as respectivas anotações."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="26" y="222" width="382" height="28"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Santo André,___ de ________________ de ______.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="299" width="382" height="28"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[__________________________________________]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="26" y="327" width="382" height="26"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pessoa}.getNome().toUpperCase()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
